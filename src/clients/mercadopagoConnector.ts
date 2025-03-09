@@ -43,7 +43,7 @@ export const createPreference = async (student: any, products: Array<any>) => {
             student,
             products
         },
-        notification_url: 'https://my-app.com.ar/mercadopago/weebhook'
+        notification_url: 'https://school-lunch-api-production.up.railway.app/webhook/mercadopago'
     };
 
     // @ts-ignore
