@@ -5,6 +5,7 @@ import studentRouter from "./routes/studentRouter";
 import menuRouter from "./routes/catalogRouter";
 import checkoutRouter from "./routes/checkoutRouter";
 import mercadopagoRouter from "./routes/mercadopagoRouter";
+import orderRouter from "./routes/orderRouter";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use("/api", studentRouter);
 app.use("/api", menuRouter);
 app.use("/api", checkoutRouter);
+app.use("/api", orderRouter);
 app.use("/webhook", mercadopagoRouter);
 
 app.listen(PORT, () => {

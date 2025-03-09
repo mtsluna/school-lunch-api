@@ -4,7 +4,7 @@ export const getCatalogByDateAndStudentType = async (date: string, studentType: 
     const data = await getSheetData('menus');
 
     const filteredData = data.filter((item: any) =>
-        (item.day === date || item.day === "all") &&
+        (item.date === date || item.date === "all") &&
         (item.student_type === studentType || item.student_type === "all")
     );
 

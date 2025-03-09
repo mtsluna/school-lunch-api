@@ -37,6 +37,26 @@ export const getSheetData = async (sheetName: string) => {
     }
 };
 
+export const getSheetDataDynamically = async (sheetName: string, query: string) => {
+    try {
+        const doc = await getDoc();
+        const sheet = doc.sheetsByTitle[sheetName];
+
+        await sheet.loadCells("A1");
+
+        sheet.getCellByA1("A1").formula = query;
+
+        await sheet.saveUpdatedCells();
+
+        const rows = await sheet.getRows();
+
+        return rows.map(row => row.toObject());
+    } catch (error) {
+        console.error("Error fetching Google Sheet data:", error);
+        throw new Error("Failed to fetch data from Google Sheets");
+    }
+}
+
 export const addRow = async (sheetName: string, data: any) => {
     try {
         const doc = await getDoc();
