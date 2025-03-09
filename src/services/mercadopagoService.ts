@@ -15,9 +15,10 @@ export const receivePaymentHook = async (hookData: any) => {
         return;
     }
 
-    const { student, products } = payment.metadata;
+    const { date, student, products } = payment.metadata;
 
     const newOrder = {
+        date,
         student_name: student.student_name,
         student_surname: student.student_surname,
         student_document: student.student_document,

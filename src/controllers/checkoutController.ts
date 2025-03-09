@@ -10,7 +10,8 @@ export const checkout = async (req: Request, res: Response) => {
             !checkoutData.student_document ||
             !checkoutData.father_document ||
             !checkoutData.father_email ||
-            !checkoutData.products
+            !checkoutData.products ||
+            !checkoutData.date
         ) {
             return res.status(400).json({ error: "Missing required fields" });
         }

@@ -20,6 +20,7 @@ export const postCheckout = async (checkoutData: any) => {
 
         if(JSON.parse(student.subscription_enabled.toLowerCase())) {
             const newOrder = {
+                date: checkoutData.date,
                 student_name: student.student_name,
                 student_surname: student.student_surname,
                 student_document: student.student_document,
@@ -40,7 +41,7 @@ export const postCheckout = async (checkoutData: any) => {
             }
         }
 
-        const preference = await createPreference(student, checkoutData.products)
+        const preference = await createPreference(checkoutData.date, student, checkoutData.products)
 
         return { flow: 'MERCADOPAGO', preference };
     } catch (error) {

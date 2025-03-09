@@ -19,7 +19,7 @@ export const findPaymentById = async (id: string) => {
     })
 }
 
-export const createPreference = async (student: any, products: Array<any>) => {
+export const createPreference = async (date: string, student: any, products: Array<any>) => {
     const client = new MercadoPagoConfig({  accessToken: MERCADOPAGO_ACCESS_TOKEN });
     const preference = new Preference(client);
 
@@ -40,6 +40,7 @@ export const createPreference = async (student: any, products: Array<any>) => {
         },
         auto_return: "approved",
         metadata: {
+            date,
             student,
             products
         },
