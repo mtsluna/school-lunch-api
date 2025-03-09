@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import studentRouter from "./routes/studentRouter";
 import menuRouter from "./routes/catalogRouter";
 import checkoutRouter from "./routes/checkoutRouter";
@@ -11,6 +12,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cors());
+
 app.use("/api", studentRouter);
 app.use("/api", menuRouter);
 app.use("/api", checkoutRouter);
