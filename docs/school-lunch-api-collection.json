@@ -1,0 +1,191 @@
+{
+  "info": {
+    "name": "School Lunch API",
+    "description": "API for managing school lunch orders",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "description": "Authentication endpoints",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"dfmattio@gmail.com\",\n  \"password\": \"345345345\"\n}"
+            },
+            "description": "Authenticate a user and get an access token"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Students",
+      "description": "Student management endpoints",
+      "item": [
+        {
+          "name": "Get Students by Father Email",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"]
+            },
+            "description": "Get students associated with a father's email"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Catalog",
+      "description": "Catalog management endpoints",
+      "item": [
+        {
+          "name": "Get Catalog by Date and Student Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/catalogs?date=2023-05-15&student_type=primary",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "catalogs"],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "2023-05-15",
+                  "description": "Date in YYYY-MM-DD format"
+                },
+                {
+                  "key": "student_type",
+                  "value": "primary",
+                  "description": "Type of student (e.g., primary, secondary)"
+                }
+              ]
+            },
+            "description": "Get catalog items for a specific date and student type"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "description": "Order management endpoints",
+      "item": [
+        {
+          "name": "Get Orders by Date",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/orders?date=10-03-2025",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "orders"],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "10-03-2025",
+                  "description": "Date in DD-MM-YYYY format"
+                }
+              ]
+            },
+            "description": "Get orders for a specific date"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Checkout",
+      "description": "Checkout process endpoints",
+      "item": [
+        {
+          "name": "Process Checkout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/checkout",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "checkout"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"student_document\": \"123123124\",\n  \"products\": [\n    {\n      \"id\": \"Tiramisu\",\n      \"quantity\": 1,\n      \"price\": 1234\n    }\n  ],\n  \"date\": \"2025-03-14\"\n}"
+            },
+            "description": "Process a checkout for lunch orders"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mercado Pago",
+      "description": "Mercado Pago webhook endpoints",
+      "item": [
+        {
+          "name": "Mercado Pago Webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/webhook/mercadopago",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhook", "mercadopago"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"payment.created\",\n  \"data\": {\n    \"id\": \"payment-id\"\n  }\n}"
+            },
+            "description": "Webhook for Mercado Pago payment notifications"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "Base URL for the API"
+    }
+  ]
+}
