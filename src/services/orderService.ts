@@ -18,3 +18,13 @@ export const getOrdersByFatherEmailAndDate = async (
     `=QUERY(orders!A:AAA, "SELECT * WHERE  (${studentCondition}) AND A = date '" & TEXT("${date}", "yyyy-MM-dd") & "'", 1)`
   );
 };
+
+export const getOrderByStudentDocumentAndDate = async (
+  studentDocument: string,
+  date: string
+) => {
+  return await getSheetDataDynamically(
+    "orders search",
+    `=QUERY(orders!A:AAA, "SELECT * WHERE  D = ${studentDocument} AND A = date '" & TEXT("${date}", "yyyy-MM-dd") & "'", 1)`
+  );
+};

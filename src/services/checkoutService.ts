@@ -1,5 +1,6 @@
 import { createPreference } from "../clients/mercadopagoConnector";
 import { addRow } from "../clients/sheetsConnector";
+import { getOrderByStudentDocumentAndDate } from "./orderService";
 import { getStudentsByFatherEmailAndFatherDocumentAndStudentDocument } from "./studentService";
 
 export const postCheckout = async (checkoutData: any) => {
@@ -20,6 +21,17 @@ export const postCheckout = async (checkoutData: any) => {
     if (!student) {
       throw new Error(
         `Error searching student: ${checkoutData.father_email} ${checkoutData.student_document}`
+      );
+    }
+
+    const order = await getOrderByStudentDocumentAndDate(
+      student.student_document,
+      checkoutData.date
+    );
+
+    if (order.length > 0) {
+      throw new Error(
+        `Order already exists for ${checkoutData.date}: ${checkoutData.father_email} ${checkoutData.student_document}`
       );
     }
 
