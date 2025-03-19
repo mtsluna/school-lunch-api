@@ -1,0 +1,20 @@
+{
+  "id": "school-lunch-api-environment",
+  "name": "School Lunch API Environment",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "secret",
+      "enabled": true,
+      "description": "JWT token obtained from login response"
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}
