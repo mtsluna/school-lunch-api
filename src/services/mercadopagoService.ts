@@ -3,13 +3,15 @@ import {addRow} from "../clients/sheetsConnector";
 
 export const receivePaymentHook = async (hookData: any) => {
 
+    console.info(hookData);
+
     if(hookData.topic !== "payment") {
         return;
     }
 
-    const paymentData = hookData.data;
+    const { id } = hookData;
 
-    const payment = await findPaymentById(paymentData.id);
+    const payment = await findPaymentById(id);
 
     if(payment.status !== 'approved') {
         return;
