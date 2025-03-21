@@ -5,7 +5,7 @@ export const receivePaymentHook = async (hookData: any) => {
 
     console.info(hookData);
 
-    if(hookData.topic !== "payment") {
+    if(hookData.type !== "payment") {
         return;
     }
 
