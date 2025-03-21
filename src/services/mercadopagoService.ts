@@ -9,7 +9,7 @@ export const receivePaymentHook = async (hookData: any) => {
         return;
     }
 
-    const { id } = hookData;
+    const { id } = hookData.data;
 
     const payment = await findPaymentById(id);
 
