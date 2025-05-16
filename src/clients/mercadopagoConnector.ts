@@ -46,7 +46,6 @@ export const createPreference = async (
       failure: "http://localhost:4200/order-summary?result=failure",
       pending: "http://localhost:4200/order-summary?result=pending",
     },
-    auto_return: "approved",
     metadata: {
       date,
       student,
